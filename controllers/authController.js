@@ -1,7 +1,7 @@
 // Import required modules and models
 const userModel = require("../models/userModel");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 // Handle user signup
 module.exports.signup = async function signup(req, res) {

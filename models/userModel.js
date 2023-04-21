@@ -1,6 +1,6 @@
 // Import necessary modules
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 // Define a regular expression to validate email addresses
 const validateEmail = function (email) {

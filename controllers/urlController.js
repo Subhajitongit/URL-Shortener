@@ -42,14 +42,7 @@ module.exports.createShortUrl = async function createShortUrl(req, res) {
     const cachedShortUrl = await client.get(url);
     if (cachedShortUrl) {
       const cachedData = JSON.parse(cachedShortUrl);
-      const { fUrl, check } = cachedData;
-      // Check if the user has already shortened this URL
-      if (check === null) {
-        // If the user has not already shortened this URL, add it to their list of shortened URLs
-        await userModel.findByIdAndUpdate(req.user, {
-          $push: { urls: fUrl },
-        });
-      }
+      const { fUrl } = cachedData;
 
       // Return the short URL and user information
       return res.json({
@@ -74,7 +67,7 @@ module.exports.createShortUrl = async function createShortUrl(req, res) {
       }
 
       // Add the short URL data to Redis cache for future use
-      await client.set(url, JSON.stringify({ fUrl, check }));
+      await client.set(url, JSON.stringify({ fUrl }));
 
       // Return the short URL and user information
       return res.json({
@@ -92,7 +85,7 @@ module.exports.createShortUrl = async function createShortUrl(req, res) {
     });
 
     // Add the new short URL to Redis cache for future use
-    await client.set(url, JSON.stringify({ fUrl: shortUrl, check: null }));
+    await client.set(url, JSON.stringify({ fUrl: shortUrl }));
 
     // Add the new short URL to the user's list of shortened URLs
     await userModel.findByIdAndUpdate(req.user, {
