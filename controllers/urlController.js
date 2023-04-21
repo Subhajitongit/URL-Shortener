@@ -6,10 +6,10 @@ const { createClient } = require("redis");
 
 // Create a Redis client instance
 const client = createClient({
-  password: "J6saPu6cFLJEzh4L9WO50nJHtV7dCoKh",
+  password: process.env.REDIS_PASSWORD,
   socket: {
-    host: "redis-17884.c212.ap-south-1-1.ec2.cloud.redislabs.com",
-    port: 17884,
+    host: process.env.REDIS_URL,
+    port: process.env.REDIS_PORT,
   },
   tls: {
     rejectUnauthorized: false,
