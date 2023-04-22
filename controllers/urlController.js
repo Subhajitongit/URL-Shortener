@@ -48,7 +48,7 @@ module.exports.createShortUrl = async function createShortUrl(req, res) {
       return res.json({
         message: "Successfully created!",
         user: req.user,
-        shortUrl: `localhost:8080/${fUrl.url}`,
+        shortUrl: `https://surl-short.vercel.app/${fUrl.url}`,
       });
     }
 
@@ -73,7 +73,7 @@ module.exports.createShortUrl = async function createShortUrl(req, res) {
       return res.json({
         message: "Succesfully created!",
         user: req.user,
-        shortUrl: `localhost:8080/${fUrl.url}`,
+        shortUrl: `https://surl-short.vercel.app/${fUrl.url}`,
       });
     }
 
@@ -96,7 +96,7 @@ module.exports.createShortUrl = async function createShortUrl(req, res) {
     res.json({
       message: "Succesfully created!",
       user: req.user,
-      shortUrl: `localhost:8080/${shortId}`,
+      shortUrl: `https://surl-short.vercel.app/${shortId}`,
     });
   } catch (err) {
     // If there is an error, return an error message
