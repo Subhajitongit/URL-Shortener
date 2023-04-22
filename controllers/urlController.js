@@ -45,7 +45,7 @@ module.exports.createShortUrl = async function createShortUrl(req, res) {
       const { fUrl } = cachedData;
 
       // Return the short URL and user information
-      return res.json({
+      return res.status(200).json({
         message: "Successfully created!",
         user: req.user,
         shortUrl: `https://surl-short.vercel.app/${fUrl.url}`,
@@ -70,7 +70,7 @@ module.exports.createShortUrl = async function createShortUrl(req, res) {
       await client.set(url, JSON.stringify({ fUrl }));
 
       // Return the short URL and user information
-      return res.json({
+      return res.status(200).json({
         message: "Succesfully created!",
         user: req.user,
         shortUrl: `https://surl-short.vercel.app/${fUrl.url}`,
@@ -93,14 +93,14 @@ module.exports.createShortUrl = async function createShortUrl(req, res) {
     });
 
     // Return the new short URL and user information
-    res.json({
+    res.status(200).json({
       message: "Succesfully created!",
       user: req.user,
       shortUrl: `https://surl-short.vercel.app/${shortId}`,
     });
   } catch (err) {
     // If there is an error, return an error message
-    res.json({
+    res.status(400).json({
       message: err.message,
     });
   }

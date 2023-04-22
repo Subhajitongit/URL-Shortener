@@ -21,14 +21,14 @@ module.exports.signup = async function signup(req, res) {
     });
 
     // Send a JSON response with a success message, the new user data, and the token
-    res.json({
+    res.status(200).json({
       message: "Succesfully Signed Up",
       data: user,
       token: token,
     });
   } catch (err) {
     // If an error occurs, send a JSON response with the error message
-    res.json({
+    res.status(400).json({
       message: err.message,
     });
   }
@@ -60,14 +60,14 @@ module.exports.signin = async function signin(req, res) {
     });
 
     // Send a JSON response with a success message, the user data, and the token
-    res.json({
+    res.status(200).json({
       message: "Succesfully Signed In",
       data: user,
       token: token,
     });
   } catch (err) {
     // If an error occurs, send a JSON response with the error message
-    res.json({
+    res.status(400).json({
       message: err.message,
     });
   }
